@@ -7,6 +7,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * 取注册值
+ * @param <K> Key 类型
+ * @param <V> Value 类型
+ */
 public class HashSupplierRegistry<K, V> implements SupplierRegistry<K, V> {
 
     private final Map<K, Supplier<V>> registry = new HashMap<>();

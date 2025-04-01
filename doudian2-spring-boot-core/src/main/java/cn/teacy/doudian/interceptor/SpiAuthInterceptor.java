@@ -22,6 +22,9 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+/**
+ * Spi请求 检查参数合法性，并验签
+ */
 @Slf4j
 public class SpiAuthInterceptor implements HandlerInterceptor {
 
@@ -51,7 +54,7 @@ public class SpiAuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        String logId = request.getHeader("logId");
+        String logId = request.getHeader("logId"); // 平台提供
         SpiContextHolder.setLogId(logId);
 
         if (StrUtil.isNotBlank(logId)) {

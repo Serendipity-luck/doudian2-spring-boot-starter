@@ -21,6 +21,14 @@ public class DoudianApiEncoder implements Encoder {
         this.signService = signService;
     }
 
+    /**
+     * 签名，并构造请求
+     * @param object what to encode as the request body.
+     * @param bodyType the type the object should be encoded as. {@link #MAP_STRING_WILDCARD}
+     *     indicates form encoding.
+     * @param template the request template to populate.
+     * @throws EncodeException
+     */
     @Override
     public void encode(Object object, Type bodyType, RequestTemplate template) throws EncodeException {
         if (object instanceof ApiRequest<?> apiRequest) {

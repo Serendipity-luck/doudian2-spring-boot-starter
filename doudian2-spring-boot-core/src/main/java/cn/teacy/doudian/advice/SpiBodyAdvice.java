@@ -24,6 +24,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * spi请求体增强
+ * 对于外部进来的spi请求，由于其序列化规则与其他接口使用的序列化规则不同，因此采用这种二次转换的方式
+ * 确保spi接口与普通接口能采用默认序列化方式进行处理
+ */
 @Slf4j
 @RestControllerAdvice
 public class SpiBodyAdvice extends RequestBodyAdviceAdapter implements ResponseBodyAdvice<Object> {
@@ -59,6 +64,17 @@ public class SpiBodyAdvice extends RequestBodyAdviceAdapter implements ResponseB
         );
     }
 
+    /**
+     * 当SpiObjectMapper序列化规则与默认规则不同时进行转换处理。
+     * 猜测是为了与非Spi调用的普通请求方式兼容，这样代码中只要统一只对普通请求方式兼容即可。
+     * @param inputMessage the request
+     * @param parameter the target method parameter
+     * @param targetType the target type, not necessarily the same as the method
+     * parameter type, for example, for {@code HttpEntity<String>}.
+     * @param converterType the converter used to deserialize the body
+     * @return
+     * @throws IOException
+     */
     @Override
     @NonNull
     public HttpInputMessage beforeBodyRead(

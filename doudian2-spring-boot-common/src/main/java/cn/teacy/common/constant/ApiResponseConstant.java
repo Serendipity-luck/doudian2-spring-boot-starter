@@ -1,5 +1,8 @@
 package cn.teacy.common.constant;
 
+/**
+ * Api响应值
+ */
 public interface ApiResponseConstant {
 
     interface StatusCode {

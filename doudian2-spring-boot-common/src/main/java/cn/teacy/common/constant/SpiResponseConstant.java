@@ -3,6 +3,7 @@ package cn.teacy.common.constant;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+// SPI响应
 public interface SpiResponseConstant {
 
     @Getter
@@ -20,7 +21,7 @@ public interface SpiResponseConstant {
         TASK_NOT_EXIST(6004L, "任务不存在"),
 
         FAIL_TO_CANCEL(6005L, "取消失败"),
-
+        // 验签失败 100001；参数错误 100002；系统错误 100003
         ;
 
         private final Long code;

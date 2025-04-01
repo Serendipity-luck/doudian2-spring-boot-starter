@@ -58,6 +58,12 @@ public class DoudianSignService implements ISignService {
         return apiRequest;
     }
 
+    /**
+     * 先创建ApiRequest再进行签名
+     * @param apiParam
+     * @return
+     * @param <P>
+     */
     public <P> ApiRequest<P> sign(P apiParam) {
         String method = Optional.ofNullable(
                         AnnotationUtils.findAnnotation(apiParam.getClass(), OpParam.class)

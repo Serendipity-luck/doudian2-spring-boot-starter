@@ -24,7 +24,7 @@ public class DoudianJacksonConfig {
         customizer.customize(jackson2ObjectMapperBuilder);
 
         return jackson2ObjectMapperBuilder
-                .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
+                .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE) // 下划线命名
                 .createXmlMapper(false).build();
     }
 

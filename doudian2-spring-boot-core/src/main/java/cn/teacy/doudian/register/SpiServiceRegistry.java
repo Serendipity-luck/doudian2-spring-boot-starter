@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.lang.reflect.Method;
 import java.util.*;
 
+/**
+ * 注册所有@SpiEndpoint的类
+ * 以及其中的路由
+ */
 @Slf4j
 public class SpiServiceRegistry {
 

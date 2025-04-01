@@ -15,6 +15,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+/**
+ * 抖店请求拦截器
+ * 添加FeignClient请求头，及指定解码器和编码器
+ */
 @Slf4j
 @RequiredArgsConstructor
 public class DoudianRequestInterceptor implements RequestInterceptor {
@@ -36,9 +40,10 @@ public class DoudianRequestInterceptor implements RequestInterceptor {
 
             StringWrapper wrapper = new StringWrapper(value);
 
+            // 动态占位符替换
             ReUtil.findAll(TEMPLATE_PATTERN, wrapper.getValue(), (matcher) -> {
                 String group = matcher.group();
-                String eval = supplierRegistry.eval(group.substring(1, group.length() - 1));
+                String eval = supplierRegistry.eval(group.substring(1, group.length() - 1)); // 去掉占位符
                 wrapper.setValue(StrUtil.replace(wrapper.getValue(), group, eval));
             });
 
@@ -52,6 +57,11 @@ public class DoudianRequestInterceptor implements RequestInterceptor {
         String value;
     }
 
+    /**
+     * string headers -> Map<String, String>
+     * @param headers
+     * @return
+     */
     private static Map<String, String> resolveHeaders(String[] headers) {
         return Arrays.stream(headers)
                 .map(header -> {
